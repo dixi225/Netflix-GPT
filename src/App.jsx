@@ -1,10 +1,11 @@
 import './App.css'
+import Body from './Components/Body'
+import Header from './Components/Header'
 import './index.css'
 function App() {
   return <>
-      <div className=' text-3xl'>hello
-
-      </div>
+    <Header/>
+    <Body/>
     </>
 }
 
