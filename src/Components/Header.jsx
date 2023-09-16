@@ -3,7 +3,7 @@ import logo from '../Utills/Netflix_Logo_PMS.png'
 const Header = () => {
   return <div className=' absolute z-10'>
     <div >
-       <img className='w-44 m-6' src={logo} alt="" />
+       <img className='bg-gradient-to-b  from-black w-44  px-2 ' src={logo} alt="" />
     </div>
   </div>
 }

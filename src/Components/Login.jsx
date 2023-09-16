@@ -1,9 +1,27 @@
-import React, { useRef,useState } from 'react'
+import React, { useEffect, useRef,useState } from 'react'
 import { checkValidData } from '../Utills/Validations'
 import { NETFLIX_BACKGROUND_URL } from '../Utills/Constants'
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import {auth} from '../Utills/Firebase'
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from '../Utills/Userslice';
+import {useNavigate } from 'react-router-dom';
 const Login = () => {
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        const {uid,email,displayName} = user;
+        dispatch(addUser({uid,email,displayName}))
+        navigate('/browse')
+      } else {
+        dispatch(removeUser())
+        navigate('/')
+      }
+    });
+  },[])
   const [isSignin,setIsSignin]=useState(true)
   const [errorMessege,setErrorMessege]=useState(null)
   const toggleState=()=>{
@@ -48,8 +66,8 @@ const Login = () => {
   }
   return (
     <div className='absolute'>
-        <div className='flex justify-center'>
-        <img className='bg-gradient-to-r  from-cyan-500 to-blue-500' src={NETFLIX_BACKGROUND_URL} alt="" srcset="" />
+        <div className='flex justify-center '>
+        <img className='bg-gradient-to-b  from-black' src={NETFLIX_BACKGROUND_URL} alt="" srcset="" />
             <form onSubmit={(e)=>e.preventDefault()} className='rounded-md shadow-md bg-opacity-90 max-w-md mt-28 bg-black text-white absolute px-16 py-10' action="">
             {isSignin?<h1 className='font-semibold text-4xl my-10'>Sign In</h1>:<h1 className='font-semibold text-4xl my-10'>Sign Up</h1>}
             {!isSignin&&<input className='focus:outline-none rounded-md shadow-lg w-full bg-gray-700 mt-8  p-4 ' type='text' placeholder='Name'/>}
