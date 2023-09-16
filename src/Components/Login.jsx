@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
-import  {useState} from 'react'
+import React, { useRef,useState } from 'react'
 import { checkValidData } from '../Utills/Validations'
 import { NETFLIX_BACKGROUND_URL } from '../Utills/Constants'
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../Utills/Firebase'
 const Login = () => {
   const [isSignin,setIsSignin]=useState(true)
   const [errorMessege,setErrorMessege]=useState(null)
@@ -11,8 +12,39 @@ const Login = () => {
   const email=useRef(null)
   const password=useRef(null)
   const handleListner=()=>{
-    console.log(password.current.value);
     setErrorMessege(checkValidData( email.current.value,password.current.value))//why no destructuring
+    if(errorMessege) return
+    if(!isSignin)
+    {
+      createUserWithEmailAndPassword(auth,email.current.value,password.current.value)
+        .then((userCredential) => { 
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);  
+          // ...
+    })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessege(errorCode+' - '+ errorMessage)
+    // ..
+  });
+    }
+    else
+    {
+      signInWithEmailAndPassword(auth, email.current.value,password.current.value)
+      .then((userCredential) => {
+    // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+    // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessege(errorCode+' - '+ errorMessage)
+     });
+    }
   }
   return (
     <div className='absolute'>
