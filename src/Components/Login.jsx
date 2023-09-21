@@ -3,10 +3,9 @@ import { checkValidData } from '../Utills/Validations'
 import { NETFLIX_BACKGROUND_URL } from '../Utills/Constants'
 import { createUserWithEmailAndPassword ,signInWithEmailAndPassword ,updateProfile } from "firebase/auth";
 import {auth} from '../Utills/Firebase'
-import { useNavigate } from 'react-router-dom';
 import Header from './Header';
+import { USER_LOGO } from '../Utills/Constants';
 const Login = () => {
-  const navigate=useNavigate()
   const [isSignin,setIsSignin]=useState(true)
   const [errorMessege,setErrorMessege]=useState(null)
   const toggleState=()=>{
@@ -24,7 +23,7 @@ const Login = () => {
   .then((userCredential) => {
     // Signed in 
     updateProfile(auth.currentUser, {
-      displayName: name.current.value, photoURL: "https://pbs.twimg.com/profile_images/1482640567658217472/Fp36n5mF_400x400.jpg"
+      displayName: name.current.value, photoURL:USER_LOGO
     }).then(() => {
       // Profile updated!
       // ...
@@ -33,7 +32,6 @@ const Login = () => {
       setErrorMessege(error)
       // ...
     });
-    navigate('/browse')
     // ...
   })
   .catch((error) => {
@@ -45,11 +43,10 @@ const Login = () => {
     }
     else
     {
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(auth,email.current.value,password.current.value)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        navigate('/browse')
+          console.log(auth.currentUser);
         // ...
       })
       .catch((error) => {
