@@ -10,7 +10,6 @@ const useMoviePlaying = () => {
       const fetchData=async()=>{
           const data=await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', movieOptions);
           const json=await data.json()
-          console.log(json.results);
           dispatch(addMovieData(json.results))
       }
 }
