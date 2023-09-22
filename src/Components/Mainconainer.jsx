@@ -10,8 +10,8 @@ const Mainconainer = () => {
     if(!mainMovie) return ;    
     const{original_title,overview,id}=mainMovie
     return<div>
-      <Videotitle title={original_title} overview={overview} />
-      <Videobackground id={id} />
+      <Videotitle  title={original_title} overview={overview} />
+      <Videobackground  id={id} />
   </div>
 }
 
