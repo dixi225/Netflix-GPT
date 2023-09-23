@@ -7,3 +7,4 @@ export const movieOptions = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWVlN2UwOTU4ZmZlYjAxMmJjYjcyMzBjNGM0MDZjMSIsInN1YiI6IjY1MGI5NDg3ZjkyNTMyMDBhZGUwM2VmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h2lBKF79aLYXDj4DjRBfqMsnam0dYRxsrxJB98R4buI'
     }
   };
+ export const IMG_CDN_URL='https://image.tmdb.org/t/p/w200' 

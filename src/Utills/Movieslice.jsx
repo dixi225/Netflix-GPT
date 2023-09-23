@@ -10,6 +10,15 @@ const Movieslice=createSlice({
             addMovieData:(state,actions)=>{
                 state.movieList=actions.payload
             },
+            addUpcomingMovieData:(state,actions)=>{
+                state.movieList=actions.payload
+            },
+            addTopRatedMovieData:(state,actions)=>{
+                state.movieList=actions.payload
+            },
+            addNowPlayingMovieData:(state,actions)=>{
+                state.movieList=actions.payload
+            },
             addMovieTrailer:(state,actions)=>{
                 state.mainTrailer=actions.payload
             }

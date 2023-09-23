@@ -6,10 +6,10 @@ import Videotitle from './Videotitle'
 const Mainconainer = () => {
     const movies=useSelector(store=>store.movie?.movieList)
     if(!movies) return ;    
-    const mainMovie=movies[0] 
+    const mainMovie=movies[11] 
     if(!mainMovie) return ;    
     const{original_title,overview,id}=mainMovie
-    return<div>
+    return<div className=' overflow-hidden'>
       <Videotitle  title={original_title} overview={overview} />
       <Videobackground  id={id} />
   </div>

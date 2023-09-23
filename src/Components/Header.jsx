@@ -34,12 +34,12 @@ const Header = () => {
     <div >
        <img className=' w-44  px-2 ' src={logo} alt="" />
     </div>
-    {user&&<div className='flex items-center mr-2'>
+    {user&&<div className='flex items-center mr-8'>
         <div onClick={handleClick} className=' cursor-pointer p-2 text-white font-semibold'> Sign-out
         </div>
         <div>
           {/* {console.log(user)} */}
-          <img className=' w-14' src={user.photoURL} alt="" />
+          <img className=' rounded-full w-14' src={user.photoURL} alt="" />
         </div>
     </div>}
   </div>
